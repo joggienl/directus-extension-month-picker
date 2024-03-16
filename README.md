@@ -17,10 +17,10 @@ Use the buttons above and below the year to go back (or forward) in time.
 
 The Picker should be mobile friendly and should also be translated well.
 
-The display of the interface has been set to always display as `MMMM yyyy` ("
-March 2004"). Let me know if configuration is needed here. The display of the
+The display of the interface has been set to always display as `MMMM yyyy`
+("March 2004"). Let me know if configuration is needed here. The display of the
 overview can be adjusted as you please. I would recommend `MMMM yyyy` as well
-there but it is up to you.
+there but that is up to you.
 
 ## Adding to data model
 
@@ -31,8 +31,9 @@ Picker" as interface option.
 ## Some additional notes
 
 This extension has been inspired upon the official datetime picker that directus
-ships with. There is actually a `monthSelect` plugin available for the extension
-that Directus has build, but support for that has not been added.
+ships with. There is actually a `monthSelect` plugin available for flatpick, the
+datetimepicker Directus uses under the hood. Support for that has not been added
+though.
 
 
 
