@@ -2,7 +2,7 @@
 	"name": "directus-extension-month-picker",
 	"description": "An interface extension that allows easy picking of any month in a given year.",
 	"icon": "extension",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"keywords": [
 		"directus",
 		"directus-extension",
