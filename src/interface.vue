@@ -55,7 +55,6 @@ function unsetValue(event) {
 </script>
 
 <template>
-	<!--	<input :value="value" @input="handleChange($event.target.value)" />-->
 	<v-menu ref="monthPickerMenu" :close-on-content-click="false" attached :disabled="disabled" full-height seamless>
 		<template #activator="{ toggle, active }">
 			<v-input
