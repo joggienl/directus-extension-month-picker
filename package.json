@@ -2,7 +2,16 @@
 	"name": "directus-extension-month-picker",
 	"description": "An interface extension that allows easy picking of any month in a given year.",
 	"icon": "extension",
-	"version": "1.0.0",
+	"version": "1.0.1",
+	"license": "MIT",
+	"author": {
+		"email": "jogchum@clevercactus.dev",
+		"name": "Jogchum Koerts"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:joggienl/directus-extension-month-picker.git"
+	},
 	"keywords": [
 		"directus",
 		"directus-extension",
@@ -10,7 +19,8 @@
 	],
 	"type": "module",
 	"files": [
-		"dist"
+		"dist",
+		"docs"
 	],
 	"directus:extension": {
 		"type": "interface",
