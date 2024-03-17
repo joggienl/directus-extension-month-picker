@@ -3,7 +3,7 @@
 A directus interface extension that allows easy picking of any month in a given
 year.
 
-![screenshot](./docs/screenshot.jpeg)
+![screenshot](https://raw.githubusercontent.com/joggienl/directus-extension-month-picker/main/docs/screenshot.png)
 
 ## Description
 
