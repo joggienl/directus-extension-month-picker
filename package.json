@@ -10,7 +10,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:joggienl/directus-extension-month-picker.git"
+		"url": "git+ssh://git@github.com/joggienl/directus-extension-month-picker.git"
 	},
 	"keywords": [
 		"directus",
