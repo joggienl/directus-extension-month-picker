@@ -1,13 +1,13 @@
 <script setup>
-import { isValid, parse, format } from 'date-fns';
+import { isValid, parse, format } from 'date-fns'
 import { useI18n } from 'vue-i18n'
-import {computed, onBeforeMount, ref, watch} from 'vue';
+import { computed, onBeforeMount, ref, watch } from 'vue'
 
 import {
 	getDateFNSLocale,
-	loadDateFNSLocale
-} from './utils/get-date-fns-locale.js';
-import Picker from './components/picker.vue';
+	loadDateFNSLocale,
+} from './utils/get-date-fns-locale.js'
+import Picker from './components/picker.vue'
 
 const props = defineProps({
 	value: String,
@@ -15,47 +15,59 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['input'])
-const i18n = useI18n();
-const { t, locale: { value: locale } } = i18n;
-const { displayValue, isValidValue } = useDisplayValue();
+const i18n = useI18n()
+const {
+	t,
+	locale: { value: locale },
+} = i18n
+const { displayValue, isValidValue } = useDisplayValue()
 
-const monthPickerMenu = ref(null);
+const monthPickerMenu = ref(null)
 
-onBeforeMount(async() => {
+onBeforeMount(async () => {
 	// Based on the current locale, we load some date-fns locale files
-	await loadDateFNSLocale(locale);
+	await loadDateFNSLocale(locale)
 })
 
 function useDisplayValue() {
-	const displayValue = ref(null);
-	const isValidValue = computed(() => (props.value ? isValid(parseValue(props.value)) : false));
-	watch(() => props.value, setDisplayValue, {immediate: true});
-	return {displayValue, isValidValue};
+	const displayValue = ref(null)
+	const isValidValue = computed(() =>
+		props.value ? isValid(parseValue(props.value)) : false,
+	)
+	watch(() => props.value, setDisplayValue, { immediate: true })
+	return { displayValue, isValidValue }
 
 	function setDisplayValue() {
 		if (!props.value || !isValidValue.value) {
-			displayValue.value = null;
-			return;
+			displayValue.value = null
+			return
 		}
 		displayValue.value = format(parseValue(props.value), 'MMMM yyyy', {
-			locale: getDateFNSLocale(locale)
+			locale: getDateFNSLocale(locale),
 		})
 	}
 
 	function parseValue(value) {
-		return parse(value, 'yyyy-MM-dd', new Date());
+		return parse(value, 'yyyy-MM-dd', new Date())
 	}
 }
 
 function unsetValue(event) {
-	event.preventDefault();
-	event.stopPropagation();
-	emit('input', null);
+	event.preventDefault()
+	event.stopPropagation()
+	emit('input', null)
 }
 </script>
 
 <template>
-	<v-menu ref="monthPickerMenu" :close-on-content-click="false" attached :disabled="disabled" full-height seamless>
+	<v-menu
+		ref="monthPickerMenu"
+		:close-on-content-click="false"
+		attached
+		:disabled="disabled"
+		full-height
+		seamless
+	>
 		<template #activator="{ toggle, active }">
 			<v-input
 				:active="active"
@@ -69,7 +81,11 @@ function unsetValue(event) {
 				<template v-if="!disabled" #append>
 					<v-icon
 						:name="value ? 'clear' : 'today'"
-						:class="{ active, 'clear-icon': value, 'today-icon': !value }"
+						:class="{
+							active,
+							'clear-icon': value,
+							'today-icon': !value,
+						}"
 						v-on="{ click: value ? unsetValue : null }"
 					/>
 				</template>

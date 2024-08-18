@@ -1,26 +1,26 @@
 <script setup>
-import {computed, onBeforeMount, ref, watch} from 'vue'
-import {useI18n} from 'vue-i18n'
-import {addYears, compareAsc, format, parse, subYears} from 'date-fns'
-import {getDateFNSLocale} from '../utils/get-date-fns-locale.js'
+import { computed, onBeforeMount, ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { addYears, compareAsc, format, parse, subYears } from 'date-fns'
+import { getDateFNSLocale } from '../utils/get-date-fns-locale.js'
 
 const props = defineProps({
 	modelValue: null,
 })
 
-const emit = defineEmits([
-	'update:modelValue',
-	'close'
-])
+const emit = defineEmits(['update:modelValue', 'close'])
 
-const {t, locale: {value: locale}} = useI18n()
+const {
+	t,
+	locale: { value: locale },
+} = useI18n()
 
 const selectedDate = ref(null)
 const currentYear = ref(null)
 
 const thisYearThisMonth = computed(() => {
-	const today = new Date();
-	return new Date(today.getFullYear(), today.getMonth(), 1);
+	const today = new Date()
+	return new Date(today.getFullYear(), today.getMonth(), 1)
 })
 
 const months = computed(() => {
@@ -45,13 +45,20 @@ onBeforeMount(() => {
 		() => props.modelValue,
 		() => {
 			if (props.modelValue) {
-				selectedDate.value = parse(props.modelValue, 'yyyy-MM-dd', new Date())
-				currentYear.value = new Date(selectedDate.value.getFullYear(), 0)
+				selectedDate.value = parse(
+					props.modelValue,
+					'yyyy-MM-dd',
+					new Date(),
+				)
+				currentYear.value = new Date(
+					selectedDate.value.getFullYear(),
+					0,
+				)
 			} else {
 				currentYear.value = new Date(new Date().getFullYear(), 0)
 			}
 		},
-		{immediate: true},
+		{ immediate: true },
 	)
 })
 
@@ -84,23 +91,19 @@ function selectMonth(month) {
 		<div class="grid">
 			<div class="years">
 				<button class="button year_updown" @click="yearDown">
-					<v-icon
-						:name="'keyboard_arrow_up'"
-					/>
+					<v-icon :name="'keyboard_arrow_up'" />
 				</button>
 				<button
 					v-for="(year, index) in years"
 					:key="index"
 					class="button year"
 					:class="{ active: compareAsc(year, currentYear) === 0 }"
-					@click="[0,2].includes(index) && pickYear(year)"
+					@click="[0, 2].includes(index) && pickYear(year)"
 				>
 					{{ year.getFullYear() }}
 				</button>
 				<button class="button year_updown" @click="yearUp">
-					<v-icon
-						:name="'keyboard_arrow_down'"
-					/>
+					<v-icon :name="'keyboard_arrow_down'" />
 				</button>
 			</div>
 			<div class="months_wrapper">
@@ -113,20 +116,17 @@ function selectMonth(month) {
 						@click="selectMonth(month)"
 					>
 						{{
-							format(month, 'MMMM', {locale: getDateFNSLocale(locale)})
+							format(month, 'MMMM', {
+								locale: getDateFNSLocale(locale),
+							})
 						}}
 					</button>
 				</div>
 			</div>
 		</div>
 		<div class="bottom now">
-			<button
-				class="button now"
-				@click="selectMonth(thisYearThisMonth)"
-			>
-				{{
-					t('interfaces.datetime.set_to_now')
-				}}
+			<button class="button now" @click="selectMonth(thisYearThisMonth)">
+				{{ t('interfaces.datetime.set_to_now') }}
 			</button>
 		</div>
 	</div>
@@ -138,7 +138,8 @@ function selectMonth(month) {
 }
 
 .picker .bottom.now {
-	border-top: var(--theme--border-width) solid var(--theme--border-color-subdued);
+	border-top: var(--theme--border-width) solid
+		var(--theme--border-color-subdued);
 	color: var(--theme--primary);
 	margin-top: 8px;
 	padding-top: 8px;
@@ -160,7 +161,8 @@ function selectMonth(month) {
 
 .picker .months_wrapper {
 	align-items: center;
-	border-left: var(--theme--border-width) solid var(--theme--border-color-subdued);
+	border-left: var(--theme--border-width) solid
+		var(--theme--border-color-subdued);
 	display: flex;
 	flex-wrap: nowrap;
 	justify-content: center;

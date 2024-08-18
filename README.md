@@ -3,13 +3,13 @@
 A directus interface extension that allows easy picking of any month in a given
 year.
 
-![screenshot](https://raw.githubusercontent.com/joggienl/directus-extension-month-picker/main/docs/screenshot.png)
+![screenshot](https://raw.githubusercontent.com/joggienl/directus-extension-month-picker/v.1.0.5/docs/screenshot.png)
 
 ## Description
 
 Select a month in any given year. The selected month will be saved as `date`
-field in the database, using the `yyyy-MM-dd` format. So March 2004 will
-save `2004-04-01` to the database.
+field in the database, using the `yyyy-MM-dd` format. So March 2004 will save
+`2004-04-01` to the database.
 
 You can also use the "Set To Now" button to pick the current month.
 
@@ -34,6 +34,3 @@ This extension has been inspired upon the official datetime picker that directus
 ships with. There is actually a `monthSelect` plugin available for flatpick, the
 datetimepicker Directus uses under the hood. Support for that has not been added
 though.
-
-
-
